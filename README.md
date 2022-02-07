@@ -12,6 +12,7 @@ As seen in the image above, PyBer fares vary based on city type. A running theme
 
 #### Challeges
 
+A certain challenge that was found in creating this summary was converting the groupby's into a collective DataFrame. When added as is the groupby information caused all columns to express the created index as well as the numerical information. This lead to the summary to being unreadable. The solution I came up with for this was to take advantage of the groupby's feature `.as_index()`. This lead to the groupby to look like this: `total_rides =  pyber_data_df.groupby(['type'],as_index=False).count()['ride_id']`. After confirming the correct orientation of city types and then removing them from the inde, I was able to join the calculated groups in a dictionary and add them to a new DataFrame. I also added an extra Series depicting the city types that were then reapplied to the index in the correct order. Total driver information was also an issue. The DataFrame of city_data_df had to be used over pyber_data_df. This allowed for accurate driver count to be applied.
 
 ### Total Fares by City Type Plot:
 ![PyBer line graph](https://github.com/drewabramo12/working_with_Matplotlib/blob/main/analysis/Pyber_fare_summary.png)
